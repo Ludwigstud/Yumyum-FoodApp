@@ -1,27 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMenu } from "../redux/menuSlice";
+import Header from "../components/Header";
+import MenuItems from "../components/MenuItems";
 
 const Menu = () => {
-	const dispatch = useDispatch();
-	const { items, loading, error } = useSelector((state) => state.menu);
-
-	useEffect(() => {
-		dispatch(fetchMenu());
-	}, [dispatch]);
-
-	if (loading) return <div>Loading menu...</div>;
-	if (error) return <div>Error: {error}</div>;
-
 	return (
-		<div>
-			{items.map((item) => (
-				<div key={item.id}>
-					<h2>{item.name}</h2>
-					<p>{item.description}</p>
-					<p>${item.price}</p>
-				</div>
-			))}
+		<div className="bg-[#8ED8BF] h-full bg-[url(./assets/leafbg.png)] flex flex-col items-center">	
+			<Header />
+			<MenuItems />
+			
 		</div>
 	);
 };

@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 
 * {
 	box-sizing: border-box;
+
 }
 
 body {
@@ -11,6 +13,8 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	font-family: 'Fira Sans', sans-serif;
+
 }
 
 .appContainer {
@@ -18,3 +22,13 @@ body {
 	height: 844px;
 	background-color: white;
 }
+
+
+no-scrollbar::-webkit-scrollbar {
+	display: none;
+  }
+  
+  .no-scrollbar {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+  }
