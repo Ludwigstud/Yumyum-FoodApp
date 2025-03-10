@@ -5,7 +5,7 @@ const Receipt = () => {
   return (
     <div className='bg-[#605858] h-full'>
       <Header/>
-      <p>RECEIPT</p>
+      
     </div>
   )
 }

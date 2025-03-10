@@ -17,7 +17,7 @@ const MenuItems = () => {
 	return (
 		<div className=" bg-[#605858] h-[700px] rounded-sm ">
 		<h1 className=" flex justify-start mx-5 mt-7 mb-4 text-4xl text-white font-bold">MENY</h1>
-			<div className="w-[380px]   overflow-y-auto h-[615px] no-scrollbar">
+			<div className="w-[350px]   overflow-y-auto h-[615px] no-scrollbar">
 				{items.map((item) => (
 					<Items
 						key={item.id}

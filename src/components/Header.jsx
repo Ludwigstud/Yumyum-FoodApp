@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import menuY from "./../assets/YYGS.svg";
 import menuCart from "./../assets/cart.svg";
 
+
 const Header = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -18,6 +19,10 @@ const Header = () => {
 		navigate("/order");
 	};
 
+	const handleBackToMenu = () => {
+		navigate("/menu");
+	};
+
 	return (
 		<div className="flex w-full justify-between p-5 place-items-center">
 			{!isOrderPage && (
@@ -25,6 +30,14 @@ const Header = () => {
 					src={menuY}
 					alt="YYGS"
 				/>
+			)}
+
+			{isOrderPage && (
+				<button
+					onClick={handleBackToMenu}
+					className="bg-white w-16 h-16 rounded-md text-sm text-[32px] ">
+					←
+				</button>
 			)}
 
 			{!isEstimatedOrReceiptPage && (
@@ -36,7 +49,8 @@ const Header = () => {
 						alt="Cart image"
 						className="bg-white w-16 h-16 p-3.5 rounded-sm"
 					/>
-					{itemCount > 0 && (
+
+					{itemCount > 0 && !isOrderPage && (
 						<div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
 							{itemCount}
 						</div>
