@@ -19,8 +19,8 @@ const ReceiptInfo = () => {
 	};
 
 	return (
-		<div className="flex flex-col h-full w-full items-center">
-			<div className="w-[358px] bg-[#EEEEEE] flex flex-col items-center rounded-sm overflow-y-auto max-h-[630px]">
+		<div className="flex flex-col h-full w-full items-center ">
+			<div className="w-[358px] bg-[#EEEEEE] flex flex-col items-center rounded-sm overflow-y-auto max-h-[630px] no-scrollbar">
 				<img
 					src={logo}
 					alt="YYGS logo"
@@ -31,7 +31,7 @@ const ReceiptInfo = () => {
 					{orderId ? `#${orderId}` : ""}
 				</h4>
 
-				<div className="w-full px-8 mt-8">
+				<div className="w-full px-8 mt-8 ">
 					{items.map((item) => (
 						<div
 							key={item.id}

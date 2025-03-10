@@ -4,7 +4,7 @@ import ReceiptInfo from '../components/receiptInfo'
 
 const Receipt = () => {
   return (
-    <div className='bg-[#605858] h-full flex flex-col items-center'>
+    <div className='bg-[#605858] h-full flex flex-col items-center '>
       <Header/>
       <ReceiptInfo/>
     </div>
