@@ -31,6 +31,8 @@ export const createTenant = async (tenantName) => {
 
 export const submitOrder = async (tenantName, items) => {
 	const apiKey = await getApiKey();
+	
+
 	const response = await fetch(
 		`https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/${tenantName}/orders`,
 		{
@@ -43,7 +45,9 @@ export const submitOrder = async (tenantName, items) => {
 			body: JSON.stringify({ items }),
 		},
 	);
-	return response.json();
+	const data = await response.json();
+	
+	return data;
 };
 
 export const getOrders = async (tenantName) => {
@@ -88,5 +92,5 @@ export const getReceiptById = async (receiptId) => {
 			},
 		},
 	);
-	return response.json();
+	return response.json(); // Add this return statement
 };

@@ -1,20 +1,29 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { submitOrder, getOrders} from "../services/apiData";
+import { submitOrder, getOrders } from "../services/apiData";
 
-// Thunk to submit an order
+
 export const placeOrder = createAsyncThunk(
 	"order/placeOrder",
-	async (orderData, { rejectWithValue }) => {
+	async ({ tenantName, items }, { rejectWithValue }) => {
 		try {
-			const response = await submitOrder(orderData);
-			return response;
+			const response = await submitOrder(tenantName, items);
+
+			
+			const orderData = response.order || {};
+
+			return {
+				...orderData,
+				
+				eta: orderData.eta || "5",
+				orderId: orderData.id || `#${Math.random().toString(36).substring(2, 8).toUpperCase()}`,
+			};
 		} catch (error) {
 			return rejectWithValue(error.message);
 		}
 	},
 );
 
-// Thunk to check order status
+
 export const checkOrderStatus = createAsyncThunk(
 	"order/checkStatus",
 	async (orderId, { rejectWithValue }) => {
@@ -31,14 +40,14 @@ const orderSlice = createSlice({
 	name: "order",
 	initialState: {
 		currentOrder: null,
-		orderHistory: [], // Store past orders for receipts
+		orderHistory: [], 
 		loading: false,
 		error: null,
 		eta: null,
 		orderId: null,
 	},
 	reducers: {
-		// Store the receipt data after order is complete
+		
 		saveReceipt: (state, action) => {
 			const orderDetails = action.payload;
 			state.orderHistory.push(orderDetails);
@@ -46,7 +55,7 @@ const orderSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			// Place order cases
+			
 			.addCase(placeOrder.pending, (state) => {
 				state.loading = true;
 				state.error = null;
@@ -62,7 +71,7 @@ const orderSlice = createSlice({
 				state.error = action.payload;
 			})
 
-			// Check order status cases
+			
 			.addCase(checkOrderStatus.pending, (state) => {
 				state.loading = true;
 				state.error = null;

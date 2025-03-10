@@ -6,8 +6,6 @@ const Items = ({ item }) => {
 	const dispatch = useDispatch();
 	const handleAddToCart = () => {
 		dispatch(addToCart(item));
-		// Optional: Add notification that item was added
-		console.log(`Added ${item.name} to cart`);
 	};
 
 	return (

@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeFromCart } from "../redux/cartSlice"; // Make sure to import this
+import { removeFromCart, clearCart } from "../redux/cartSlice";
+import { placeOrder } from "../redux/orderSlice";
 import Header from "../components/Header";
 
 const Order = () => {
@@ -9,8 +10,30 @@ const Order = () => {
 	const dispatch = useDispatch();
 	const { items, total } = useSelector((state) => state.cart);
 
-	const handleCheckout = () => {
-		navigate("/estimated");
+	const handleCheckout = async () => {
+		// Extract just the IDs with quantities for the order
+		const orderItems = items.map((item) => ({
+			id: item.id,
+			quantity: item.quantity,
+		}));
+
+		try {
+			// Create a tenant name (or use a fixed one for simplicity)
+			const tenantName = "yumyum_app";
+
+			// Submit the order and wait for response
+			await dispatch(
+				placeOrder({
+					tenantName,
+					items: orderItems.map((item) => item.id), // API expects array of IDs
+				}),
+			);
+
+			// Navigate to estimated page after order is placed
+			navigate("/estimated");
+		} catch (error) {
+			console.error("Failed to place order:", error);
+		}
 	};
 
 	const handleBackToMenu = () => {
