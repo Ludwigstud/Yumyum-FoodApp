@@ -8,14 +8,11 @@ const ReceiptInfo = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	
 	const { currentOrder } = useSelector((state) => state.order);
 	const { items } = useSelector((state) => state.cart);
 
-	
 	const orderId = currentOrder?.id || currentOrder?.orderId || "";
 
-	
 	const handleNewOrder = () => {
 		dispatch(clearCart());
 		navigate("/menu");
@@ -23,7 +20,6 @@ const ReceiptInfo = () => {
 
 	return (
 		<div className="flex flex-col h-full w-full items-center">
-		
 			<div className="w-[358px] bg-[#EEEEEE] flex flex-col items-center rounded-sm overflow-y-auto max-h-[630px]">
 				<img
 					src={logo}
@@ -48,7 +44,6 @@ const ReceiptInfo = () => {
 						</div>
 					))}
 
-					
 					<div className="border-t border-gray-400 pt-3 mt-4 flex justify-between mb-6">
 						<span className="font-bold text-[#353131]">TOTAL:</span>
 						<span className="font-bold text-[#353131]">
@@ -58,7 +53,6 @@ const ReceiptInfo = () => {
 				</div>
 			</div>
 
-		
 			<div className="mt-auto mb-4">
 				<button
 					onClick={handleNewOrder}

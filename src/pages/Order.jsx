@@ -19,10 +19,10 @@ const Order = () => {
 
 		try {
 			
-			const tenantName = "yumyum_app";
+			const tenantName = "luddetestar";
 
 			
-			await dispatch(
+			 dispatch(
 				placeOrder({
 					tenantName,
 					items: orderItems.map((item) => item.id), 
