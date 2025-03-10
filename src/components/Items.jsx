@@ -38,9 +38,9 @@ const Items = ({ item }) => {
 				<p className="text-[22px] font-bold">{item.price} SEK</p>
 			</div>
 
-			{item.description && item.description.indexOf("Lorem ipsum") === -1 && (
-				<p className="text-gray-300 text-sm mb-1">{item.description}</p>
-			)}
+			{item.description && (item.type === "drink" || item.description.indexOf("Lorem ipsum") === -1) && (
+                <p className="text-gray-300 text-sm mb-1">{item.description}</p>
+            )}
 
 			{Array.isArray(item.ingredients) && item.ingredients.length > 0 && (
 				<p className="font-[400] text-[14px] text-gray-200">

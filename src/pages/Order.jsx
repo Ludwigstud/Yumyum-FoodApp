@@ -48,15 +48,15 @@ const Order = () => {
 		<div className="bg-[#EEEEEE] h-full flex flex-col">
 			<Header />
 
-			<div className="flex-1 flex flex-col w-full max-h-[740px]">
+			<div className="flex-1 flex flex-col w-full max-h-[740px] justify-center">
 				{items.length === 0 ? (
 					<div className="text-[#353131] text-center p-8 w-full">
-						<p className="mb-4">Your cart is empty</p>
-						<button
+						<p className="mb-4 ">Your cart is empty</p>
+						{/* <button
 							onClick={handleBackToMenu}
 							className="bg-white text-[#605858] py-2 px-4 rounded">
 							Back to Menu
-						</button>
+						</button> */}
 					</div>
 				) : (
 					<>
