@@ -11,25 +11,25 @@ const Order = () => {
 	const { items, total } = useSelector((state) => state.cart);
 
 	const handleCheckout = async () => {
-		// Extract just the IDs with quantities for the order
+		
 		const orderItems = items.map((item) => ({
 			id: item.id,
 			quantity: item.quantity,
 		}));
 
 		try {
-			// Create a tenant name (or use a fixed one for simplicity)
+			
 			const tenantName = "yumyum_app";
 
-			// Submit the order and wait for response
+			
 			await dispatch(
 				placeOrder({
 					tenantName,
-					items: orderItems.map((item) => item.id), // API expects array of IDs
+					items: orderItems.map((item) => item.id), 
 				}),
 			);
 
-			// Navigate to estimated page after order is placed
+			
 			navigate("/estimated");
 		} catch (error) {
 			console.error("Failed to place order:", error);
@@ -48,7 +48,7 @@ const Order = () => {
 		<div className="bg-[#EEEEEE] h-full flex flex-col">
 			<Header />
 
-			<div className="flex-1 flex flex-col w-full">
+			<div className="flex-1 flex flex-col w-full max-h-[740px]">
 				{items.length === 0 ? (
 					<div className="text-[#353131] text-center p-8 w-full">
 						<p className="mb-4">Your cart is empty</p>
