@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeFromCart, clearCart } from "../redux/cartSlice";
 import { placeOrder } from "../redux/orderSlice";
+import { getOrCreateTenant } from "../services/apiData";
 import Header from "../components/Header";
 
 const Order = () => {
@@ -11,7 +12,6 @@ const Order = () => {
 	const { items, total } = useSelector((state) => state.cart);
 
 	const handleCheckout = async () => {
-		
 		const orderItems = items.map((item) => ({
 			id: item.id,
 			quantity: item.quantity,
@@ -19,17 +19,15 @@ const Order = () => {
 
 		try {
 			
-			const tenantName = "luddetestar";
+			const tenantName = await getOrCreateTenant();
 
-			
-			 dispatch(
+			dispatch(
 				placeOrder({
 					tenantName,
-					items: orderItems.map((item) => item.id), 
+					items: orderItems.map((item) => item.id),
 				}),
 			);
 
-			
 			navigate("/estimated");
 		} catch (error) {
 			console.error("Failed to place order:", error);
