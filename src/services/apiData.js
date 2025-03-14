@@ -105,22 +105,6 @@ export const getOrderById = async (tenantName, orderId) => {
 	return response.json();
 };
 
-export const getReceiptById = async (receiptId) => {
-	const apiKey = await getApiKey();
-	const response = await fetch(
-		`https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/receipts/${receiptId}`,
-		{
-			method: "GET",
-			headers: {
-				"x-zocom": apiKey,
-				accept: "application/json",
-			},
-		},
-	);
-	return response.json();
-};
-
-
 export const fetchReceipt = async (orderId) => {
 	if (!orderId) {
 		return null;
