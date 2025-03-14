@@ -89,10 +89,13 @@ const ReceiptInfo = () => {
 							))}
 						</div>
 
-						<div className="w-full px-8 mt-4 mb-6">
-							<div className="border-t border-gray-400 pt-3 flex justify-between">
-								<span className="font-bold text-[#353131]">TOTAL:</span>
-								<span className="font-bold text-[#353131]">{totalValue} SEK</span>
+						<div className="w-full py-1 mt-4 px-5 rounded-sm bg-[#C2C1C1]">
+							<div className="pt-3 flex justify-between">
+								<span className="font-bold text-[#353131] text-[24px]">TOTAL:</span>
+								<span className="font-bold text-[#353131] text-[24px]">{totalValue} SEK</span>
+							</div>
+							<div className="flex justify-start ">
+								<span className="text-xs text-[#353131] mb-1">inkl. 20% moms</span>
 							</div>
 						</div>
 					</div>
