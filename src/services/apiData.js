@@ -5,6 +5,20 @@ export const getApiKey = async () => {
 	return apiKey.json();
 };
 
+export const createTenant = async (tenantName) => {
+	const apiKey = await getApiKey();
+	const response = await fetch("https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants", {
+		method: "POST",
+		headers: {
+			"x-zocom": apiKey,
+			"Content-Type": "application/json",
+			accept: "application/json",
+		},
+		body: JSON.stringify({ name: tenantName }),
+	});
+	return response.json();
+};
+
 export const getOrCreateTenant = async () => {
 	const storedTenant = localStorage.getItem("yumyum_tenant");
 
@@ -29,20 +43,6 @@ export const getOrCreateTenant = async () => {
 
 		return "yumyum_fallback";
 	}
-};
-
-export const createTenant = async (tenantName) => {
-	const apiKey = await getApiKey();
-	const response = await fetch("https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants", {
-		method: "POST",
-		headers: {
-			"x-zocom": apiKey,
-			"Content-Type": "application/json",
-			accept: "application/json",
-		},
-		body: JSON.stringify({ name: tenantName }),
-	});
-	return response.json();
 };
 
 export const getMenu = async () => {

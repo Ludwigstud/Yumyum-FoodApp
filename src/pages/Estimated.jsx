@@ -9,6 +9,7 @@ const Estimated = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [imageLoaded, setImageLoaded] = useState(false);
+	const { currentOrder } = useSelector((state) => state.order);
 
 	useEffect(() => {
 		const img = new Image();
@@ -16,20 +17,9 @@ const Estimated = () => {
 		img.onload = () => setImageLoaded(true);
 	}, []);
 
-	const { currentOrder } = useSelector((state) => state.order);
-
 	const getEta = () => {
 		if (!currentOrder) {
 			return "";
-		}
-
-		if (typeof currentOrder.eta === "number") {
-			return currentOrder.eta.toString();
-		}
-
-		if (typeof currentOrder.eta === "string" && currentOrder.eta.includes("min")) {
-			const matches = currentOrder.eta.match(/\d+/);
-			if (matches) return matches[0];
 		}
 
 		if (typeof currentOrder.eta === "string" && currentOrder.eta.includes("T")) {
@@ -41,7 +31,7 @@ const Estimated = () => {
 	};
 
 	const displayEta = getEta();
-	const displayOrderId = currentOrder?.id || currentOrder?.orderId || "";
+	const displayOrderId = currentOrder?.id;
 
 	const handleNewOrder = () => {
 		dispatch(clearCart());

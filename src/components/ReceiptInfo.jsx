@@ -11,7 +11,6 @@ const ReceiptInfo = () => {
 	const [loading, setLoading] = useState(true);
 	const [receipt, setReceipt] = useState(null);
 	const [imageLoaded, setImageLoaded] = useState(false);
-
 	const { currentOrder } = useSelector((state) => state.order);
 	const { items: cartItems } = useSelector((state) => state.cart);
 

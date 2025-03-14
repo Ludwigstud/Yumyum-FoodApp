@@ -15,10 +15,10 @@ const Order = () => {
 		const orderItems = items.map((item) => ({
 			id: item.id,
 			quantity: item.quantity,
+			
 		}));
 
 		try {
-			
 			const tenantName = await getOrCreateTenant();
 
 			dispatch(
@@ -34,9 +34,7 @@ const Order = () => {
 		}
 	};
 
-	const handleBackToMenu = () => {
-		navigate("/menu");
-	};
+
 
 	const handleRemoveItem = (id) => {
 		dispatch(removeFromCart(id));
@@ -50,30 +48,30 @@ const Order = () => {
 				{items.length === 0 ? (
 					<div className="text-[#353131] text-center p-8 w-full">
 						<p className="mb-4 ">Your cart is empty</p>
-						{/* <button
-							onClick={handleBackToMenu}
-							className="bg-white text-[#605858] py-2 px-4 rounded">
-							Back to Menu
-						</button> */}
 					</div>
 				) : (
 					<>
-						<div className="flex-1 overflow-y-auto no-scrollbar w-full">
+						<div className="flex-1 overflow-y-auto no-scrollbar w-full px-3">
 							{items.map((item) => (
 								<div
 									key={item.id}
-									className="flex justify-between items-center border-b border-gray-500 p-3 mb-3 w-full text-[#353131] font-bold">
-									<div className="flex-1">
-										<h3 className="text-xl text-[24px]">{item.name}</h3>
-									</div>
-									<div className="flex items-center gap-4">
-										<span className="text-sm">{item.quantity}x</span>
-										<span className="font-bold text-[24px]">{item.quantity * item.price} SEK</span>
-										<button
-											onClick={() => handleRemoveItem(item.id)}
-											className="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold hover:bg-red-600">
-											×
-										</button>
+									className=" border-gray-500 p-3 mb-3 w-full text-[#353131] font-bold">
+									<div className="flex items-baseline">
+										<div className="flex-shrink-0 mr-2">
+											<h3 className="text-xl text-[24px]">{item.name}</h3>
+										</div>
+										<div className="flex-grow border-b-2 border-dotted border-[#000000] mx-2"></div>
+										<div className="flex-shrink-0 flex items-center gap-4">
+											<span className="text-sm">{item.quantity}x</span>
+											<span className="font-bold text-[24px]">
+												{item.quantity * item.price} SEK
+											</span>
+											<button
+												onClick={() => handleRemoveItem(item.id)}
+												className="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold hover:bg-red-600">
+												×
+											</button>
+										</div>
 									</div>
 								</div>
 							))}
